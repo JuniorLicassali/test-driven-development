@@ -16,7 +16,14 @@ public class Pedido {
 		this.calculadoraFaixaDesconto = calculadoraFaixaDesconto;
 	}
 
+	private void validarQuantidadeItems(ItemPedido itemPedido) {
+		if (itemPedido.getQuantidade() < 0) {
+			throw new QuantidadeDeItensInvalidaException();
+		}
+	}
+	
 	public void adicionarItem(ItemPedido itemPedido) {
+		validarQuantidadeItems(itemPedido);
 		itens.add(itemPedido);
 	}
 
